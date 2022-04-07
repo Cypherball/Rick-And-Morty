@@ -7,7 +7,10 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "build-ios": "npx react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
+    "build-android": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res"
   },
   "dependencies": {
     "@eva-design/eva": "^2.1.0",
@@ -36,6 +39,8 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-native": "^4.0.0",
     "jest": "^26.6.3",
@@ -45,29 +50,5 @@
   },
   "jest": {
     "preset": "react-native"
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "prettier",
-      "plugin:react/recommended",
-      "plugin:react-native/all",
-      "standard"
-    ],
-    "plugins": [
-      "react",
-      "react-native"
-    ],
-    "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      }
-    },
-    "settings": {
-      "react": {
-        "pragma": "React",
-        "version": "detect"
-      }
-    }
   }
 }

@@ -23,3 +23,15 @@ Now, follow the below steps in order to run the app:
 5. `react-native run-android` (in separate/new terminal) to run app in android simulator. Before running android please open the android simulator to run the app
 
 6. `react-native run-ios` (in separate/new terminal) to run the app in ios simulator
+
+## Details
+
+- UI Library Used: [React Native UI Kitten](https://akveo.github.io/react-native-ui-kitten/)
+
+- API Used: [Rick and Morty API](https://rickandmortyapi.com/)
+
+- Screens:
+  1. Home Screen: _Displays all known characters from Rick and Morty. Also contains a search bar to filter characters by their name._!
+     ![Home Screen SS](./assets/screenshots/home-screen-1.png)
+  2. Character Screen: _Displays detailed information about a selected character. Character Information, their where abouts, origin, and episode appearances are displayed here._
+     ![Character Screen SS](./assets/screenshots/character-screen-1.png)

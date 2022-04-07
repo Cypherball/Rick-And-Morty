@@ -1,12 +1,12 @@
-import {Image, ScrollView, StyleSheet, View} from 'react-native'
-import {Divider, Layout, Text, useTheme} from '@ui-kitten/components'
-import React, {useEffect, useState} from 'react'
+import { Image, ScrollView, StyleSheet, View } from 'react-native'
+import { Divider, Layout, Text, useTheme } from '@ui-kitten/components'
+import React, { useEffect, useState } from 'react'
 import TopNavbar from '../components/navbar/TopNavbar'
 import PortalLoader from '../components/loaders/PortalLoader'
 import RickAndMortySdk from '../utils/api/rnmApi'
 
-const CharacterScreen = ({route, navigation}) => {
-  const {characterId} = route.params
+const CharacterScreen = ({ route, navigation }) => {
+  const { characterId } = route.params
   const theme = useTheme()
 
   const [loading, setLoading] = useState(false)
@@ -47,25 +47,27 @@ const CharacterScreen = ({route, navigation}) => {
     <Layout level={'3'} style={styles.characterInfoContainer}>
       <Text
         category={'h3'}
-        style={{textAlign: 'center', paddingTop: 0}}
+        style={{ textAlign: 'center', paddingTop: 0 }}
         status="primary">
         {characterData.name}
       </Text>
 
-      <View style={{flexDirection: 'row'}}>
-        <Text category={'c1'} style={{marginRight: 8, color: getStatusColor()}}>
+      <View style={{ flexDirection: 'row' }}>
+        <Text
+          category={'c1'}
+          style={{ marginRight: 8, color: getStatusColor() }}>
           <Text category={'c1'} appearance={'hint'}>
             Status:
           </Text>
           {` ${characterData.status}`}
         </Text>
-        <Text category={'c1'} style={{marginRight: 8}}>
+        <Text category={'c1'} style={{ marginRight: 8 }}>
           <Text category={'c1'} appearance={'hint'}>
             Gender:
           </Text>
           {` ${characterData.gender}`}
         </Text>
-        <Text category={'c1'} style={{marginRight: 8}}>
+        <Text category={'c1'} style={{ marginRight: 8 }}>
           <Text category={'c1'} appearance={'hint'}>
             Species:
           </Text>
@@ -73,7 +75,7 @@ const CharacterScreen = ({route, navigation}) => {
         </Text>
       </View>
       {characterData.type ? (
-        <Text category={'c1'} style={{marginRight: 8}}>
+        <Text category={'c1'} style={{ marginRight: 8 }}>
           <Text category={'c1'} appearance={'hint'}>
             Type/Subspecies:
           </Text>
@@ -84,7 +86,7 @@ const CharacterScreen = ({route, navigation}) => {
   )
 
   const renderOriginInfo = () => (
-    <Layout level={'1'} style={{padding: 16}}>
+    <Layout level={'1'} style={{ padding: 16 }}>
       <Text category={'h5'}>Origin</Text>
 
       {originData ? (
@@ -123,7 +125,7 @@ const CharacterScreen = ({route, navigation}) => {
         <Text
           appearance={'hint'}
           category="s1"
-          style={{textAlign: 'center', marginTop: 8}}>
+          style={{ textAlign: 'center', marginTop: 8 }}>
           Origin Data Not Found
         </Text>
       )}
@@ -131,7 +133,7 @@ const CharacterScreen = ({route, navigation}) => {
   )
 
   const renderLocationInfo = () => (
-    <Layout level={'2'} style={{padding: 16}}>
+    <Layout level={'2'} style={{ padding: 16 }}>
       <Text category={'h5'}>Last Known Location</Text>
 
       {locationData ? (
@@ -170,7 +172,7 @@ const CharacterScreen = ({route, navigation}) => {
         <Text
           appearance={'hint'}
           category="s1"
-          style={{textAlign: 'center', marginTop: 8}}>
+          style={{ textAlign: 'center', marginTop: 8 }}>
           Location Data Not Found
         </Text>
       )}
@@ -178,13 +180,13 @@ const CharacterScreen = ({route, navigation}) => {
   )
 
   const renderEpisodeInfo = () => (
-    <Layout level={'1'} style={{padding: 16}}>
+    <Layout level={'1'} style={{ padding: 16 }}>
       <Text category={'h5'}>Episode Appearances</Text>
 
       {episodeData.length ? (
         episodeData.map(ep => (
           <View key={ep?.id}>
-            <View style={{marginVertical: 4}}>
+            <View style={{ marginVertical: 4 }}>
               <Text category={'s1'} style={styles.locationDetailsRowText}>
                 {`${ep?.episode} - ${ep?.name}`}
               </Text>
@@ -202,7 +204,7 @@ const CharacterScreen = ({route, navigation}) => {
         <Text
           appearance={'hint'}
           category="s1"
-          style={{textAlign: 'center', marginTop: 8}}>
+          style={{ textAlign: 'center', marginTop: 8 }}>
           No Episodes Found
         </Text>
       )}
@@ -229,7 +231,7 @@ const CharacterScreen = ({route, navigation}) => {
       ) : (
         <ScrollView>
           <Image
-            source={{uri: characterData.image}}
+            source={{ uri: characterData.image }}
             style={styles.imageStyle}
           />
           {renderCharacterInfo()}
@@ -260,7 +262,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: undefined,
     aspectRatio: 1,
-    backgroundColor: '#e89ac7',
+    backgroundColor: '#f0e14a',
   },
   characterInfoContainer: {
     paddingHorizontal: 16,

@@ -1,15 +1,13 @@
 import React from 'react'
-import {StyleSheet, Text, View} from 'react-native'
-import {useNavigation} from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import {
   Icon,
-  Layout,
   TopNavigation,
   TopNavigationAction,
   useTheme,
 } from '@ui-kitten/components'
 
-const TopNavbar = ({title, subtitle, showBackButton}) => {
+const TopNavbar = ({ title, subtitle, showBackButton }) => {
   const navigation = useNavigation()
   const theme = useTheme()
 
@@ -25,8 +23,8 @@ const TopNavbar = ({title, subtitle, showBackButton}) => {
       accessoryLeft={showBackButton ? BackAction : null}
       title={title}
       alignment="center"
-      subtitle={subtitle ? subtitle : null}
-      style={{backgroundColor: theme['color-basic-1000']}}
+      subtitle={subtitle || null}
+      style={{ backgroundColor: theme['color-basic-1000'] }}
     />
   )
 }
@@ -38,5 +36,3 @@ TopNavbar.defaultProps = {
 }
 
 export default TopNavbar
-
-const styles = StyleSheet.create({})

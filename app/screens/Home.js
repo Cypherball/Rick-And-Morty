@@ -1,6 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react'
-import {FlatList, StyleSheet, View} from 'react-native'
-import {Layout, Spinner, Text, useTheme} from '@ui-kitten/components'
+import React, { useEffect, useRef, useState } from 'react'
+import { FlatList, StyleSheet, View } from 'react-native'
+import { Layout, Spinner, Text, useTheme } from '@ui-kitten/components'
 
 import RickAndMortySdk from '../utils/api/rnmApi'
 import PortalLoader from '../components/loaders/PortalLoader'
@@ -11,7 +11,7 @@ const DATA_FILTERS = {
   name: '',
 }
 
-const Home = ({route, navigation}) => {
+const Home = ({ navigation }) => {
   const theme = useTheme()
 
   // loader states
@@ -70,33 +70,33 @@ const Home = ({route, navigation}) => {
         <PortalLoader />
       ) : (
         <Text category={'h5'} status="warning">
-          {`Oops, Couldn't find anything :(`}
+          {"Oops, Couldn't find anything :("}
         </Text>
       )}
     </View>
   )
 
-  const renderListItem = ({index, item}) => (
+  const renderListItem = ({ _index, item }) => (
     <CharacterCard
       character={item}
       onPress={character =>
-        navigation.navigate('CharacterScreen', {characterId: character.id})
+        navigation.navigate('CharacterScreen', { characterId: character.id })
       }
     />
   )
 
   return (
     <Layout style={styles.container}>
-      <View style={{flex: 1}}>
-        <View style={{backgroundColor: theme['color-basic-1000']}}>
+      <View style={{ flex: 1 }}>
+        <View style={{ backgroundColor: theme['color-basic-1000'] }}>
           <DebouncedSearchInput
             placeholder="Search Characters..."
             disabled={refreshing || (loading && !queryFilters.name)}
             inititalSearchText={queryFilters.name}
             onChangeSearchText={nextValue =>
-              setFilters(_filters => ({..._filters, name: nextValue}))
+              setFilters(_filters => ({ ..._filters, name: nextValue }))
             }
-            style={{marginHorizontal: 10, marginVertical: 8}}
+            style={{ marginHorizontal: 10, marginVertical: 8 }}
           />
         </View>
 
@@ -115,8 +115,9 @@ const Home = ({route, navigation}) => {
           keyExtractor={(item, index) => item.id}
           onEndReached={() => {
             // load more data if not already loading
-            if (loading || loadingMore || refreshing || page > totalPages)
+            if (loading || loadingMore || refreshing || page > totalPages) {
               return
+            }
             loadData(page, false)
           }}
           onEndReachedThreshold={0.8}
@@ -137,12 +138,12 @@ const Home = ({route, navigation}) => {
       </View>
       <View style={styles.footer}>
         <Text
-          style={{...styles.title, fontSize: 32}}
+          style={{ ...styles.title, fontSize: 32 }}
           onPress={() => {
             // scroll flat list back to top when pressed
-            if (flatListRef) flatListRef.current.scrollToOffset({offset: 0})
+            if (flatListRef) flatListRef.current.scrollToOffset({ offset: 0 })
           }}>
-          Rick <Text style={{...styles.title, fontSize: 24}}>and</Text> Morty
+          Rick <Text style={{ ...styles.title, fontSize: 24 }}>and</Text> Morty
         </Text>
       </View>
     </Layout>

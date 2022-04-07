@@ -1,8 +1,7 @@
-import {StyleSheet} from 'react-native'
-import React, {useCallback, useState} from 'react'
+import React, { useCallback, useState } from 'react'
 import debounce from 'lodash.debounce'
-import {Icon, Input} from '@ui-kitten/components'
-import {TouchableWithoutFeedback} from '@ui-kitten/components/devsupport'
+import { Icon, Input } from '@ui-kitten/components'
+import { TouchableWithoutFeedback } from '@ui-kitten/components/devsupport'
 
 const DebouncedSearchInput = ({
   inititalSearchText,
@@ -57,5 +56,3 @@ DebouncedSearchInput.defaultProps = {
 }
 
 export default DebouncedSearchInput
-
-const styles = StyleSheet.create({})

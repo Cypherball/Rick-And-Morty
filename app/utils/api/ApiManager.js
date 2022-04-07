@@ -3,7 +3,7 @@
  */
 
 import axios from 'axios'
-import {Alert} from 'react-native'
+import { Alert } from 'react-native'
 
 // add content type to header if header is null
 const getHeaders = headers => {
@@ -27,7 +27,7 @@ const handleError = error => {
         case 404:
           Alert.alert(
             'Error',
-            ` "Welp that sucks, we couldn't find what you're looking for..."`,
+            "Welp that sucks, we couldn't find what you're looking for...",
           )
           break
         case 405:
@@ -47,7 +47,7 @@ const handleError = error => {
       `Seems like there was an error.\n\n${JSON.stringify(response.data)}`,
     )
   } else {
-    if (error.isAxiosError && error.message == 'Network Error') {
+    if (error.isAxiosError && error.message === 'Network Error') {
       Alert.alert(
         'Network Error',
         'Uh oh! There seems to be a network issue, please check your connectivity and try again.',
@@ -62,7 +62,7 @@ const handleError = error => {
 }
 
 const ApiManager = {
-  get: async ({url, headers = null, handleErrors = true}) => {
+  get: async ({ url, headers = null, handleErrors = true }) => {
     try {
       const res = await axios.get(url, {
         headers: getHeaders(headers),
@@ -76,7 +76,7 @@ const ApiManager = {
       throw err
     }
   },
-  post: async ({url, data, headers = null, handleErrors = true}) => {
+  post: async ({ url, data, headers = null, handleErrors = true }) => {
     try {
       const res = await axios.post(url, data, {
         headers: getHeaders(headers),
