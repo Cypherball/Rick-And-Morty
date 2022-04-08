@@ -49,7 +49,7 @@ const Home = ({ navigation }) => {
     if (refresh) setRefreshing(true)
     else _page === 1 ? setLoading(true) : setLoadingMore(true)
 
-    if (refresh || _page === 1) {
+    if (!refresh && _page === 1) {
       // reset data
       setData([])
       setTotalPages(0)
@@ -63,7 +63,9 @@ const Home = ({ navigation }) => {
     setTotalPages(_data?.info?.pages || 0)
     if (_data?.results) {
       setData(currentData =>
-        _page === 1 ? _data.results : [...currentData, ..._data.results],
+        _page === 1 || refresh
+          ? _data.results
+          : [...currentData, ..._data.results],
       )
       // increment page if data fetched succesfully
       setPage(_page + 1)
