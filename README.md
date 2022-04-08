@@ -8,7 +8,7 @@ This is a hybrid mobile app which displays information about all the characters 
 
 ## Debug Demo APK
 
-[Download From Here](./releases/v1.0.0-debug.apk)
+[Download From Here](https://github.com/Cypherball/Rick-And-Morty/releases/tag/untagged-148894576c3568ff6f32)
 
 ## Installation Steps
 
@@ -46,4 +46,4 @@ Now, follow the below steps in order to run the app:
 
 ## Demo Video
 
-[App Demo](./assets/demo/Rick%20and%20Morty%20React%20Native%20App%20Demo.mp4)
+[App Demo](https://drive.google.com/file/d/1maUDKzXWK57lgsVWjwKLLvl7zaDDcviN/view?usp=sharing)
