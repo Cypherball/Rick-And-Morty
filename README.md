@@ -31,7 +31,11 @@ Now, follow the below steps in order to run the app:
 - API Used: [Rick and Morty API](https://rickandmortyapi.com/)
 
 - Screens:
-  1. Home Screen: _Displays all known characters from Rick and Morty. Also contains a search bar to filter characters by their name._!
+
+  1. **Home Screen**: _Displays all known characters from Rick and Morty. Also contains a search bar to filter characters by their name._!
+
      ![Home Screen SS](./assets/screenshots/home-screen-1.png)
-  2. Character Screen: _Displays detailed information about a selected character. Character Information, their where abouts, origin, and episode appearances are displayed here._
+
+  2. **Character Screen**: _Displays detailed information about a selected character. Character Information, their where abouts, origin, and episode appearances are displayed here._
+
      ![Character Screen SS](./assets/screenshots/character-screen-1.png)
