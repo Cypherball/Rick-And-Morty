@@ -6,6 +6,10 @@ This is a hybrid mobile app which displays information about all the characters 
 
 **Version:** 0.68.0
 
+## Debug Demo APK
+
+[Download From Here](./releases/v1.0.0-debug.apk)
+
 ## Installation Steps
 
 Setup the React Native CLI Development environment for your machine if you haven't already: [Follow this guide](https://reactnative.dev/docs/environment-setup)
@@ -39,3 +43,7 @@ Now, follow the below steps in order to run the app:
   2. **Character Screen**: _Displays detailed information about a selected character. Character Information, their where abouts, origin, and episode appearances are displayed here._
 
      ![Character Screen SS](./assets/screenshots/character-screen-1.png)
+
+## Demo Video
+
+[App Demo](./assets/demo/Rick%20and%20Morty%20React%20Native%20App%20Demo.mp4)
