@@ -28,11 +28,11 @@ Now, follow the below steps in order to run the app:
 
 - UI Library Used: [React Native UI Kitten](https://akveo.github.io/react-native-ui-kitten/)
 
-- API Used: [Rick and Morty API](https://rickandmortyapi.com/)
+- API Used: [Rick and Morty API](https://rickandmortyapi.com/). A custom Wrapper/Sdk has been created for the API ([See File Here](./app/utils/api/rnmApi.js)).
 
 - Screens:
 
-  1. **Home Screen**: _Displays all known characters from Rick and Morty. Also contains a search bar to filter characters by their name._!
+  1. **Home Screen**: _Displays all known characters from Rick and Morty in an Infinite Scroll Fashion. Also contains a search bar to filter characters by their name._
 
      ![Home Screen SS](./assets/screenshots/home-screen-1.png)
 

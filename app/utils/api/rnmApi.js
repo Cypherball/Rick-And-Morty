@@ -9,6 +9,12 @@ const baseUrl = 'https://rickandmortyapi.com/api'
 const CHARACTER_FILTERS = ['name', 'status', 'species', 'type', 'gender']
 
 const RickAndMortySdk = {
+  getLocationById: async id => {
+    return ApiManager.get({ url: `${baseUrl}/location/${id}` })
+  },
+  getEpisodeById: async id => {
+    return ApiManager.get({ url: `${baseUrl}/episode/${id}` })
+  },
   getCharacterById: async id => {
     return ApiManager.get({ url: `${baseUrl}/character/${id}` })
   },
@@ -30,7 +36,7 @@ const RickAndMortySdk = {
     return ApiManager.get({ url: `${baseUrl}/character/${query}` })
   },
   getFullCharacterDetailById: async id => {
-    // get character, their origin, location and episodes in one call
+    // get character, their origin, location and episodes in one function call
     const character = await ApiManager.get({
       url: `${baseUrl}/character/${id}`,
     })
@@ -45,15 +51,23 @@ const RickAndMortySdk = {
     if (character.origin?.url) {
       origin = await ApiManager.get({ url: character.origin.url })
     }
-    // fetch all episodes simultaneously
-    const episodes = []
-    if (Array.isArray(character.episode)) {
-      await Promise.all(
-        character.episode?.map(async epUrl => {
-          const ep = await ApiManager.get({ url: epUrl })
-          if (ep) episodes.push(ep)
-        }),
+    let episodes = []
+    if (Array.isArray(character.episode) && character.episode.length > 0) {
+      // fetch all episodes simultaneously (brute forced)
+      // await Promise.all(
+      //   character.episode.map(async epUrl => {
+      //     const ep = await ApiManager.get({ url: epUrl })
+      //     if (ep) episodes.push(ep)
+      //   }),
+      // )
+      //
+      // extract episode ids and then fetch multiple episodes in single request (efficient and elegant)
+      const episodeIds = character.episode.map(
+        epUrl => epUrl.replace(`${baseUrl}/episode/`, ''), // extract id from url
       )
+      episodes = await ApiManager.get({
+        url: `${baseUrl}/episode/${episodeIds.toString()}`,
+      })
     }
     return { character, location, origin, episodes }
   },
