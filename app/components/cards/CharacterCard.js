@@ -1,4 +1,4 @@
-/*
+/**
  * Character Card Component to display characters from Rick And Morty API
  * Character Schema/Object: https://rickandmortyapi.com/documentation/#character-schema
  */
@@ -24,6 +24,7 @@ const CharacterCard = ({ character, onPress }) => {
   return (
     <View style={{ overflow: 'hidden', flex: 1, margin: 6 }}>
       <TouchableHighlight
+        testID="characterCard"
         underlayColor={theme['color-primary-500']}
         activeOpacity={0.69}
         onPress={() => onPress(character)}

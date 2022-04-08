@@ -1,11 +1,11 @@
-/*
+/**
  * General Axios based API Manager with Error Handling
  */
 
 import axios from 'axios'
 import { Alert } from 'react-native'
 
-// add content type to header if header is null
+// add content type to header if custom header is not sent
 const getHeaders = headers => {
   if (headers && typeof headers === 'object') return headers
   return {
@@ -14,6 +14,7 @@ const getHeaders = headers => {
 }
 
 const handleError = error => {
+  // Get Error Response
   const response = typeof error.response !== 'undefined' ? error.response : null
   console.error(
     '---API MANAGER ERROR HANDLING---\n',
@@ -21,6 +22,7 @@ const handleError = error => {
     JSON.stringify(response?.data),
   )
 
+  // Handle Error by showing user an Alert with error message
   if (response) {
     if (typeof response.status !== 'undefined') {
       switch (response.status) {

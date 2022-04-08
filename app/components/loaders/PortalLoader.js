@@ -1,3 +1,7 @@
+/**
+ * A custom animated loading spinner on theme for Rick and Morty
+ */
+
 import React, { useEffect, useRef } from 'react'
 import { View, Animated, Easing } from 'react-native'
 
@@ -8,9 +12,13 @@ const PortalLoader = () => {
 
   useEffect(() => {
     startAnim()
+    return () => {
+      stopAnim()
+    }
   }, [])
 
   const startAnim = () => {
+    // loop animation from values 0 to 1
     Animated.loop(
       Animated.timing(spinValue, {
         toValue: 1,
@@ -21,6 +29,13 @@ const PortalLoader = () => {
     ).start()
   }
 
+  const stopAnim = () => {
+    if (spinValue) {
+      spinValue.stopAnimation()
+    }
+  }
+
+  // map 0 to 1 animated values to rotation angle
   const spin = spinValue.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'],
@@ -29,6 +44,7 @@ const PortalLoader = () => {
   return (
     <View>
       <Animated.Image
+        testID={'portalLoader'}
         style={{ transform: [{ rotate: spin }] }}
         source={PortalLoaderImage}
       />

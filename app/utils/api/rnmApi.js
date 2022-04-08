@@ -1,5 +1,5 @@
-/*
- * Rick and Morty API SDK
+/**
+ * Custom Rick and Morty API SDK
  */
 
 import ApiManager from './ApiManager'
@@ -60,14 +60,24 @@ const RickAndMortySdk = {
       //     if (ep) episodes.push(ep)
       //   }),
       // )
-      //
+
       // extract episode ids and then fetch multiple episodes in single request (efficient and elegant)
       const episodeIds = character.episode.map(
         epUrl => epUrl.replace(`${baseUrl}/episode/`, ''), // extract id from url
       )
-      episodes = await ApiManager.get({
-        url: `${baseUrl}/episode/${episodeIds.toString()}`,
-      })
+      if (episodeIds.length === 1) {
+        // add single object to array
+        episodes.push(
+          await ApiManager.get({
+            url: `${baseUrl}/episode/${episodeIds[0]}`,
+          }),
+        )
+      } else {
+        // replace with response data array
+        episodes = await ApiManager.get({
+          url: `${baseUrl}/episode/${episodeIds.toString()}`,
+        })
+      }
     }
     return { character, location, origin, episodes }
   },

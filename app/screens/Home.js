@@ -1,5 +1,13 @@
+/**
+ * Home Screen which displays all the known characters from the TV show `Rick and Morty`.
+ * The data is displayed as cards in a 2 column grid Flat List.
+ * The data is paginated and loads more data with infinite scroll method.
+ * The screen also contains a search bar to search characters by their name. The search text change event is debounced.
+ * The Rick and Morty logo at the footer of the screen can be used as a utility `Scroll to Top` Button.
+ */
+
 import React, { useEffect, useRef, useState } from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Layout, Spinner, Text, useTheme } from '@ui-kitten/components'
 
 import RickAndMortySdk from '../utils/api/rnmApi'
@@ -7,6 +15,7 @@ import PortalLoader from '../components/loaders/PortalLoader'
 import CharacterCard from '../components/cards/CharacterCard'
 import DebouncedSearchInput from '../components/search/DebouncedSearchInput'
 
+// Default data for Supported Character search filters (Can be extended)
 const DATA_FILTERS = {
   name: '',
 }
@@ -26,6 +35,7 @@ const Home = ({ navigation }) => {
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
 
+  // character search filters
   const [queryFilters, setFilters] = useState(DATA_FILTERS)
 
   const flatListRef = useRef(null)
@@ -92,9 +102,10 @@ const Home = ({ navigation }) => {
           <DebouncedSearchInput
             placeholder="Search Characters..."
             disabled={refreshing || (loading && !queryFilters.name)}
+            searchDebounceTime={500}
             inititalSearchText={queryFilters.name}
             onChangeSearchText={nextValue =>
-              setFilters(_filters => ({ ..._filters, name: nextValue }))
+              setFilters(_filters => ({ ..._filters, name: nextValue.trim() }))
             }
             style={{ marginHorizontal: 10, marginVertical: 8 }}
           />
@@ -136,16 +147,19 @@ const Home = ({ navigation }) => {
           }
         />
       </View>
-      <View style={styles.footer}>
-        <Text
-          style={{ ...styles.title, fontSize: 32 }}
+      <Layout level={'4'} style={styles.footer}>
+        <TouchableOpacity
+          testID="home.logoTouchable"
           onPress={() => {
             // scroll flat list back to top when pressed
             if (flatListRef) flatListRef.current.scrollToOffset({ offset: 0 })
           }}>
-          Rick <Text style={{ ...styles.title, fontSize: 24 }}>and</Text> Morty
-        </Text>
-      </View>
+          <Text style={{ ...styles.title, fontSize: 32 }}>
+            Rick <Text style={{ ...styles.title, fontSize: 24 }}>and</Text>{' '}
+            Morty
+          </Text>
+        </TouchableOpacity>
+      </Layout>
     </Layout>
   )
 }
@@ -164,13 +178,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   footer: {
-    backgroundColor: '#000',
+    // backgroundColor: '#000',
     padding: 16,
     borderTopEndRadius: 20,
     borderTopStartRadius: 20,
   },
   title: {
-    fontFamily: 'Get Schwifty',
+    fontFamily: 'Get Schwifty', // custom font
     textAlign: 'center',
     color: '#00b0c8',
   },

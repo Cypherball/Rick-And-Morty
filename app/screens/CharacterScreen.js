@@ -1,3 +1,9 @@
+/**
+ * A screen that displays detailed information about a selected Character
+ * A valid 'characterId' param must be passed to this screen
+ * Displays character information, location, origin, and episode appearances for character with Id `characterId`
+ */
+
 import { Image, ScrollView, StyleSheet, View } from 'react-native'
 import { Divider, Layout, Text, useTheme } from '@ui-kitten/components'
 import React, { useEffect, useState } from 'react'
@@ -5,7 +11,7 @@ import TopNavbar from '../components/navbar/TopNavbar'
 import PortalLoader from '../components/loaders/PortalLoader'
 import RickAndMortySdk from '../utils/api/rnmApi'
 
-const CharacterScreen = ({ route, navigation }) => {
+const CharacterScreen = ({ route }) => {
   const { characterId } = route.params
   const theme = useTheme()
 
@@ -23,6 +29,7 @@ const CharacterScreen = ({ route, navigation }) => {
   const loadData = async () => {
     if (loading || !characterId) return
     setLoading(true)
+    // load character data and set details accordingly
     const data = await RickAndMortySdk.getFullCharacterDetailById(characterId)
     if (!data) return setLoading(false)
     setCharacterData(data?.character || null)
@@ -43,6 +50,7 @@ const CharacterScreen = ({ route, navigation }) => {
     }
   }
 
+  // Character Object Schema: https://rickandmortyapi.com/documentation/#character-schema
   const renderCharacterInfo = () => (
     <Layout level={'3'} style={styles.characterInfoContainer}>
       <Text
@@ -85,6 +93,7 @@ const CharacterScreen = ({ route, navigation }) => {
     </Layout>
   )
 
+  // Location Object Schema: https://rickandmortyapi.com/documentation/#location-schema
   const renderOriginInfo = () => (
     <Layout level={'1'} style={{ padding: 16 }}>
       <Text category={'h5'}>Origin</Text>
@@ -132,6 +141,7 @@ const CharacterScreen = ({ route, navigation }) => {
     </Layout>
   )
 
+  // Location Object Schema: https://rickandmortyapi.com/documentation/#location-schema
   const renderLocationInfo = () => (
     <Layout level={'2'} style={{ padding: 16 }}>
       <Text category={'h5'}>Last Known Location</Text>
@@ -179,13 +189,14 @@ const CharacterScreen = ({ route, navigation }) => {
     </Layout>
   )
 
+  // Episode Object Schema: https://rickandmortyapi.com/documentation/#episode-schema
   const renderEpisodeInfo = () => (
     <Layout level={'1'} style={{ padding: 16 }}>
       <Text category={'h5'}>Episode Appearances</Text>
 
       {episodeData.length ? (
         episodeData.map(ep => (
-          <View key={ep?.id}>
+          <View key={ep?.id} testID="characterScreen.episodeView">
             <View style={{ marginVertical: 4 }}>
               <Text category={'s1'} style={styles.locationDetailsRowText}>
                 {`${ep?.episode} - ${ep?.name}`}
@@ -219,16 +230,19 @@ const CharacterScreen = ({ route, navigation }) => {
         showBackButton
       />
       {loading ? (
+        // show loader if loading
         <View style={styles.centeredContent}>
           <PortalLoader />
         </View>
       ) : !characterData ? (
+        // Character Data not found error
         <View style={styles.centeredContent}>
           <Text category={'h5'} status="warning">
             {`Oops, Couldn't find data for character with ID: ${characterId}`}
           </Text>
         </View>
       ) : (
+        // main content
         <ScrollView>
           <Image
             source={{ uri: characterData.image }}

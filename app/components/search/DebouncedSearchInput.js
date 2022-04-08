@@ -1,3 +1,8 @@
+/**
+ * General Purpose Searchbar to be used for async requests.
+ * Fires text change event with a debounced limit to prevent multiple unintended async requests
+ */
+
 import React, { useCallback, useState } from 'react'
 import debounce from 'lodash.debounce'
 import { Icon, Input } from '@ui-kitten/components'
@@ -37,6 +42,7 @@ const DebouncedSearchInput = ({
 
   return (
     <Input
+      testID="debouncedSearchInput"
       value={_searchText}
       onChangeText={_onChangeSearchText}
       placeholder={placeholder}

@@ -1,3 +1,8 @@
+/**
+ * Top Navigation with centered Title and Subtitle
+ * Includes optional back button which uses Navigation to back out
+ */
+
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import {
@@ -20,6 +25,7 @@ const TopNavbar = ({ title, subtitle, showBackButton }) => {
 
   return (
     <TopNavigation
+      testID="topNavbar"
       accessoryLeft={showBackButton ? BackAction : null}
       title={title}
       alignment="center"

@@ -1,6 +1,5 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * Rick and Morty React Native App
  *
  * @format
  * @flow strict-local
@@ -11,7 +10,7 @@ import { ApplicationProvider, IconRegistry } from '@ui-kitten/components'
 import * as eva from '@eva-design/eva'
 import { EvaIconsPack } from '@ui-kitten/eva-icons'
 
-import theme from './appTheme.json'
+import theme from './appTheme.json' // custom theme file for UI Kitten
 import MainAppNavigator from './navigators'
 
 const App = () => {
